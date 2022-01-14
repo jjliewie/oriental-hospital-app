@@ -1,0 +1,52 @@
+[
+    {   "id": 1,
+        "name": "Get Well Clinic",
+        "location": "Seoul Gangnam Gu",
+        "keywords": ["Cold", "Coughing", "Fever", "Back Pain"]
+    },
+    {   "id": 2,
+        "name": "Oriental Hospital",
+        "location": "Hannam dong",
+        "keywords": ["Cold", "Coughing", "Fever", "Nausea"]
+    },
+    {   "id": 3,
+        "name": "Lee's Cool Hospital",
+        "location": "Masan",
+        "keywords": ["Cold", "Coughing", "Back Pain"]
+    },
+    {   "id": 4,
+        "name": "hospital for elderlies",
+        "location": "Yeouido",
+        "keywords": ["Cold", "Diarrhea", "Fever", "Back Pain"]
+    },
+    {   "id": 5,
+        "name": "Jeju-do",
+        "location": "Seoul Gangnam Gu",
+        "keywords": ["Cold", "Diarrhea", "Nausea", "Back Pain"]
+    },
+    {   "id": 6,
+        "name": "Hospital6",
+        "location": "Kyeonggi do",
+        "keywords": ["Chest Pain", "Heart Pain", "Leg Pain", "Back Pain"]
+    },
+    {   "id": 7,
+        "name": "Hospital in the Woods",
+        "location": "Alcove",
+        "keywords": ["Cold", "Coughing", "Fever", "Back Pain", "Heart Pain", "Chest Pain", "Leg Pain"]
+    },
+    {   "id": 8,
+        "name": "Outpatient Clinic",
+        "location": "Changwon",
+        "keywords": ["Cold", "Coughing", "Fever", "Back Pain", "Diarrhea"]
+    },
+    {   "id": 9,
+        "name": "The Best Oriental Hospital",
+        "location": "Busan",
+        "keywords": ["Cold", "Coughing", "Nausea", "Back Pain"]
+    },
+    {   "id": 10,
+        "name": "Heal All",
+        "location": "a location",
+        "keywords": ["Cold", "Coughing", "Fever", "Back Pain", "Nausea", "Heart Pain", "Leg Pain", "Chest Pain"]
+    }
+]
