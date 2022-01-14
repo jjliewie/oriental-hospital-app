@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct MapView: View {
+    @Binding var isPresented: Bool
+    @State var coordinateRegion = MKCoordinateRegion(
+      center: CLLocationCoordinate2D(latitude: 56.948889, longitude: 24.106389),
+      span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      Map(coordinateRegion: $coordinateRegion)
+        .edgesIgnoringSafeArea(.all)
     }
-}
-
+  }
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MapView(isPresented: .constant(true))
     }
 }

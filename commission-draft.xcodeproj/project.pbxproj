@@ -13,6 +13,16 @@
 		DD237A1B27803FDF0070F407 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD237A1A27803FDF0070F407 /* Preview Assets.xcassets */; };
 		DD237A2627803FDF0070F407 /* commission_draftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD237A2527803FDF0070F407 /* commission_draftTests.swift */; };
 		DD237A3127803FDF0070F407 /* commission_draftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD237A3027803FDF0070F407 /* commission_draftUITests.swift */; };
+		DD237A3F278040C60070F407 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD237A3E278040C60070F407 /* MapView.swift */; };
+		DD237A43278068350070F407 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = DD237A42278068350070F407 /* data.json */; };
+		DD237A45278075C60070F407 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD237A44278075C60070F407 /* SearchBar.swift */; };
+		DD4B37252785604500270DC3 /* SymptomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B37242785604500270DC3 /* SymptomsView.swift */; };
+		DD4B372727856D5E00270DC3 /* MedicineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4B372627856D5E00270DC3 /* MedicineView.swift */; };
+		DD4FD91E2789EA21009C8FC8 /* symptoms.json in Resources */ = {isa = PBXBuildFile; fileRef = DD4FD91D2789EA21009C8FC8 /* symptoms.json */; };
+		DD9D0B2827826A8300B90AF3 /* HospitalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD9D0B2727826A8300B90AF3 /* HospitalView.swift */; };
+		DDA27FDA278E94A8003CD075 /* Flip.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA27FD9278E94A8003CD075 /* Flip.swift */; };
+		DDBE8D8027840F950081ED45 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE8D7F27840F950081ED45 /* SearchView.swift */; };
+		DDBE8D822784B7590081ED45 /* QaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE8D812784B7590081ED45 /* QaView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +55,16 @@
 		DD237A2C27803FDF0070F407 /* commission-draftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "commission-draftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD237A3027803FDF0070F407 /* commission_draftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commission_draftUITests.swift; sourceTree = "<group>"; };
 		DD237A3227803FDF0070F407 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD237A3E278040C60070F407 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		DD237A42278068350070F407 /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
+		DD237A44278075C60070F407 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		DD4B37242785604500270DC3 /* SymptomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomsView.swift; sourceTree = "<group>"; };
+		DD4B372627856D5E00270DC3 /* MedicineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineView.swift; sourceTree = "<group>"; };
+		DD4FD91D2789EA21009C8FC8 /* symptoms.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = symptoms.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
+		DD9D0B2727826A8300B90AF3 /* HospitalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalView.swift; sourceTree = "<group>"; };
+		DDA27FD9278E94A8003CD075 /* Flip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flip.swift; sourceTree = "<group>"; };
+		DDBE8D7F27840F950081ED45 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		DDBE8D812784B7590081ED45 /* QaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QaView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +117,14 @@
 			children = (
 				DD237A1327803FDE0070F407 /* commission_draftApp.swift */,
 				DD237A1527803FDE0070F407 /* ContentView.swift */,
+				DDBE8D7F27840F950081ED45 /* SearchView.swift */,
+				DD4B37242785604500270DC3 /* SymptomsView.swift */,
+				DDBE8D812784B7590081ED45 /* QaView.swift */,
+				DDA27FDB278E9C70003CD075 /* components */,
+				DD9D0B2727826A8300B90AF3 /* HospitalView.swift */,
+				DDA27FDC278E9C98003CD075 /* json */,
+				DD4B372627856D5E00270DC3 /* MedicineView.swift */,
+				DD237A3E278040C60070F407 /* MapView.swift */,
 				DD237A1727803FDF0070F407 /* Assets.xcassets */,
 				DD237A1C27803FDF0070F407 /* Info.plist */,
 				DD237A1927803FDF0070F407 /* Preview Content */,
@@ -128,6 +156,24 @@
 				DD237A3227803FDF0070F407 /* Info.plist */,
 			);
 			path = "commission-draftUITests";
+			sourceTree = "<group>";
+		};
+		DDA27FDB278E9C70003CD075 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				DD237A44278075C60070F407 /* SearchBar.swift */,
+				DDA27FD9278E94A8003CD075 /* Flip.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		DDA27FDC278E9C98003CD075 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				DD4FD91D2789EA21009C8FC8 /* symptoms.json */,
+				DD237A42278068350070F407 /* data.json */,
+			);
+			path = json;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +280,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD237A1B27803FDF0070F407 /* Preview Assets.xcassets in Resources */,
+				DD4FD91E2789EA21009C8FC8 /* symptoms.json in Resources */,
+				DD237A43278068350070F407 /* data.json in Resources */,
 				DD237A1827803FDF0070F407 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +308,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD237A1627803FDE0070F407 /* ContentView.swift in Sources */,
+				DD237A45278075C60070F407 /* SearchBar.swift in Sources */,
+				DDA27FDA278E94A8003CD075 /* Flip.swift in Sources */,
+				DD9D0B2827826A8300B90AF3 /* HospitalView.swift in Sources */,
+				DD237A3F278040C60070F407 /* MapView.swift in Sources */,
+				DD4B37252785604500270DC3 /* SymptomsView.swift in Sources */,
+				DDBE8D822784B7590081ED45 /* QaView.swift in Sources */,
+				DD4B372727856D5E00270DC3 /* MedicineView.swift in Sources */,
+				DDBE8D8027840F950081ED45 /* SearchView.swift in Sources */,
 				DD237A1427803FDE0070F407 /* commission_draftApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,13 +8,26 @@
 import SwiftUI
 
 struct HospitalView: View {
+    
+    let hospital : product
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        ZStack{
+            Color.offWhite
+                .ignoresSafeArea(.all)
+            Text(hospital.name)
+        }
+        .navigationBarTitle("")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+        .navigationViewStyle(StackNavigationViewStyle())
+        
     }
 }
 
-struct HospitalView_Previews: PreviewProvider {
-    static var previews: some View {
-        HospitalView()
-    }
-}
+//struct HospitalView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HospitalView()
+//    }
+//}
