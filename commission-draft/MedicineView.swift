@@ -13,6 +13,8 @@ struct MedicineView: View {
     @Binding var isPresented: Bool
     @Binding var illness: String
     
+    @State private var symptoms_chosen: [String] = []
+    
     let common: Array<String> = ["감기", "보약", "소화기", "치료약", "변비"]
         
     func getJson() -> [result]{
@@ -24,7 +26,6 @@ struct MedicineView: View {
     }
     
     func filtering(illness: String) -> Array<result>{
-        
         
         let results = getJson()
         
@@ -47,14 +48,30 @@ struct MedicineView: View {
             
     }
     
+    func make_list(illness: String) -> Array<String>{
+        
+        let results = getJson()
+        var symptoms_list: Array<String> = []
+        
+        for item in results.filter({illness == $0.illness}){
+            for symptom in item.symptoms {
+                symptoms_list.append(symptom)
+            }
+        }
+        
+        return symptoms_list
+        
+    }
+    
     
     @State private var searchText = ""
+    @State private var illnessChosen = ""
         
     var body: some View {
         
         let isCommon = common.contains(illness)
         let filtered = filtering(illness: illness)
-        
+
         ZStack{
             VStack{
                 
@@ -67,44 +84,75 @@ struct MedicineView: View {
                 
                 SearchBar(text: $searchText)
                     .padding()
+
+                if(!symptoms_chosen.isEmpty || !illnessChosen.isEmpty){
+
+                    ScrollView(.horizontal){
+
+                        HStack{
+
+                            if(!illnessChosen.isEmpty){
+                                ChosenText(chosenString: $illnessChosen)
+                            }
+
+                            ForEach(symptoms_chosen, id: \.self){ symptom in
+                                ChosenItem(text: symptom, items: $symptoms_chosen)
+                            }
+
+                        }
+                        .padding(.bottom, 10)
+
+                    }.padding(.horizontal)
+
+                }
                 
                 Spacer()
                 
-                if !isCommon{
-                    ForEach(filtered, id: \.self) { f in
-                        Button(action:{
-                            
-                        }){
-                            Text(f.illness)
-                        }
-                    }
-                }
-                
-                
-                ScrollView{
-                    
-                    LazyVGrid(columns: [
-                        GridItem(.flexible(minimum: 50, maximum: 200), spacing: 25, alignment: .top),
-                        GridItem(.flexible(minimum: 50, maximum: 200), spacing: 25),
-                    ], alignment: .leading, spacing: 25, content: {
-                        
-                        ForEach(filtered, id: \.self){ type in
-                            
-                            
-                            Flashcard(front: {
-                                medicine_front(about: type, common: isCommon)
-                            }, back: {
-                                medicine_back(about: type, common: isCommon)
-                            })
-                           
-                                
-                        } // ForEach
-                        
-                        
-                    }).padding(20)
+                if(!searchText.isEmpty || (!isCommon && illnessChosen.isEmpty)){
+                    // show illness list for !isCommon, symptoms list for isCommon
 
+                    if(isCommon){
+                        
+                        let symptoms_list = make_list(illness: illness)
+
+                        ForEach(symptoms_list.filter({"\($0)".contains(searchText)}), id: \.self){ item in
+                            
+                            Button(action:{
+                                if(!(symptoms_chosen.contains(item))){
+                                    symptoms_chosen.append(item)
+                                }
+                            }){
+                                Text(item)
+                            }
+                            
+                        }// foreach
+
+                    } // if
+                    else{
+                        
+                        ForEach(filtered, id: \.self) { f in
+                            Button(action:{
+                                
+                            }){
+                                Text(f.illness)
+                            }
+                        }
+
+                    } // else
+
+                } // searchtext empty if
+                
+                else if (!searchText.isEmpty && !isCommon && !illnessChosen.isEmpty){
+                    
+                    let symptoms_list = make_list(illness: illnessChosen)
+                    
+                    ForEach(symptoms_list, id: \.self){ item in
+                        Text(item)
+                    }// foreach
                     
                 }
+
+                medicine_scroll(filtered: filtered, isCommon: isCommon, symptoms_chosen: symptoms_chosen)
                 
                 Spacer()
                 
@@ -118,7 +166,8 @@ struct MedicineView: View {
                     
                 }
                 
-                Spacer()
+//                Spacer()
+                
             } // VStack
         } // ZStack
         .navigationTitle(illness)
@@ -127,6 +176,43 @@ struct MedicineView: View {
 //        .navigationBarHidden(true)
         .navigationViewStyle(StackNavigationViewStyle())
        
+    }
+}
+
+struct medicine_scroll: View{
+    
+    var filtered: Array<result>
+    var isCommon: Bool
+    var symptoms_chosen: Array<String>
+    
+    
+    var body: some View{
+        ScrollView{
+            
+            LazyVGrid(columns: [
+                GridItem(.flexible(minimum: 50, maximum: 200), spacing: 25, alignment: .top),
+                GridItem(.flexible(minimum: 50, maximum: 200), spacing: 25),
+            ], alignment: .leading, spacing: 25, content: {
+                
+                ForEach(filtered.filter({Set(symptoms_chosen).isSubset(of: Set($0.symptoms))}), id: \.self){ type in
+                    
+                    
+                    Flashcard(front: {
+                        medicine_front(about: type, common: isCommon)
+                    }, back: {
+                        medicine_back(about: type, common: isCommon)
+                    })
+                   
+                        
+                } // ForEach
+                
+                
+            }).padding(25)
+            .padding(.horizontal)
+
+            
+        } // ScrollView, medicines
+
     }
 }
 
@@ -191,3 +277,4 @@ struct MedicineView_Previews: PreviewProvider {
         MedicineView(isPresented: .constant(true), illness: .constant("감기"))
     }
 }
+

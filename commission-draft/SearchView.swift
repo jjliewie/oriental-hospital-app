@@ -86,7 +86,7 @@ struct SearchView: View {
                             
                             HStack{
                                 ForEach(symptoms_chosen, id: \.self){ symptom in
-                                    ChosenSymptom(text: symptom, symptoms: $symptoms_chosen)
+                                    ChosenItem(text: symptom, items: $symptoms_chosen)
                                 }
                             }
                             .padding(.bottom, 10)
@@ -176,34 +176,6 @@ struct HospitalInfo: View {
 //                .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
 //                .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
         )
-    }
-}
-
-
-struct ChosenSymptom: View {
-    var text: String
-    @Binding var symptoms : Array<String>
-
-    var body: some View {
-        
-        HStack{
-            Text(text)
-                .lineLimit(1)
-            
-            Button(action: {
-                symptoms.remove(object: text)
-            }) {
-                Image(systemName: "multiply.circle.fill")
-                    .foregroundColor(.white)
-            }
-
-        }
-        .padding(10)
-        .background(
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.gray)
-        )
-        
     }
 }
 
