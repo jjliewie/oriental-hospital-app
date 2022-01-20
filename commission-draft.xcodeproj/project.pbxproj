@@ -123,7 +123,6 @@
 				DD4B37242785604500270DC3 /* SymptomsView.swift */,
 				DDBE8D812784B7590081ED45 /* QaView.swift */,
 				DDA27FDB278E9C70003CD075 /* components */,
-				DD9D0B2727826A8300B90AF3 /* HospitalView.swift */,
 				DDA27FDC278E9C98003CD075 /* json */,
 				DD4B372627856D5E00270DC3 /* MedicineView.swift */,
 				DD237A3E278040C60070F407 /* MapView.swift */,
@@ -163,6 +162,7 @@
 		DDA27FDB278E9C70003CD075 /* components */ = {
 			isa = PBXGroup;
 			children = (
+				DD9D0B2727826A8300B90AF3 /* HospitalView.swift */,
 				DD237A44278075C60070F407 /* SearchBar.swift */,
 				DDA27FD9278E94A8003CD075 /* Flip.swift */,
 				DD336A2E279664DB000E175E /* ChosenItem.swift */,

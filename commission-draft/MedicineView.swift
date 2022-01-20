@@ -75,10 +75,10 @@ struct MedicineView: View {
         ZStack{
             VStack{
                 
-                Spacer()
-                
-                Text(illness)
-                    .font(.title)
+//                Spacer()
+//
+//                Text(illness)
+//                    .font(.title)
                 
                 Spacer()
                 
@@ -92,7 +92,7 @@ struct MedicineView: View {
                         HStack{
 
                             if(!illnessChosen.isEmpty){
-                                ChosenText(chosenString: $illnessChosen)
+                                ChosenText(chosenString: $illnessChosen, ChosenItems: $symptoms_chosen)
                             }
 
                             ForEach(symptoms_chosen, id: \.self){ symptom in
@@ -102,7 +102,7 @@ struct MedicineView: View {
                         }
                         .padding(.bottom, 10)
 
-                    }.padding(.horizontal)
+                    }.padding(.horizontal, 40)
 
                 }
                 
@@ -115,7 +115,7 @@ struct MedicineView: View {
                         
                         let symptoms_list = make_list(illness: illness)
 
-                        ForEach(symptoms_list.filter({"\($0)".contains(searchText)}), id: \.self){ item in
+                        ForEach(symptoms_list.filter({"\($0)".contains(searchText) && !symptoms_chosen.contains("\($0)")}), id: \.self){ item in
                             
                             Button(action:{
                                 if(!(symptoms_chosen.contains(item))){
@@ -128,31 +128,55 @@ struct MedicineView: View {
                         }// foreach
 
                     } // if
+                    
+                    else if (!searchText.isEmpty && !isCommon && !illnessChosen.isEmpty){
+                        
+                        let symptoms_list = make_list(illness: illnessChosen)
+                        
+                        ForEach(symptoms_list.filter({"\($0)".contains(searchText) && !symptoms_chosen.contains("\($0)")}), id: \.self){ item in
+                            
+                            Button(action:{
+                                symptoms_chosen.append(item)
+                            }){
+                                Text(item)
+                            }
+                            
+                        }// foreach
+                        
+                    }
+                    
                     else{
                         
-                        ForEach(filtered, id: \.self) { f in
-                            Button(action:{
-                                
-                            }){
-                                Text(f.illness)
+                        if(searchText.isEmpty){
+                            
+                            ForEach(filtered, id: \.self) { f in
+                                Button(action:{
+                                    illnessChosen = f.illness
+                                }){
+                                    Text(f.illness)
+                                }
                             }
-                        }
+                            
+                        } // if
+                        
+                        else{
+                            
+                            ForEach(filtered.filter({$0.illness.contains(searchText)}), id: \.self) { f in
+                                Button(action:{
+                                    illnessChosen = f.illness
+                                }){
+                                    Text(f.illness)
+                                }
+                            }
+                            
+                        } // else
 
                     } // else
 
                 } // searchtext empty if
                 
-                else if (!searchText.isEmpty && !isCommon && !illnessChosen.isEmpty){
-                    
-                    let symptoms_list = make_list(illness: illnessChosen)
-                    
-                    ForEach(symptoms_list, id: \.self){ item in
-                        Text(item)
-                    }// foreach
-                    
-                }
 
-                medicine_scroll(filtered: filtered, isCommon: isCommon, symptoms_chosen: symptoms_chosen)
+                medicine_scroll(filtered: filtered, isCommon: isCommon, symptoms_chosen: symptoms_chosen, illnessChosen: illnessChosen)
                 
                 Spacer()
                 
@@ -184,6 +208,7 @@ struct medicine_scroll: View{
     var filtered: Array<result>
     var isCommon: Bool
     var symptoms_chosen: Array<String>
+    var illnessChosen: String
     
     
     var body: some View{
@@ -194,18 +219,68 @@ struct medicine_scroll: View{
                 GridItem(.flexible(minimum: 50, maximum: 200), spacing: 25),
             ], alignment: .leading, spacing: 25, content: {
                 
-                ForEach(filtered.filter({Set(symptoms_chosen).isSubset(of: Set($0.symptoms))}), id: \.self){ type in
+                if isCommon{
                     
-                    
-                    Flashcard(front: {
-                        medicine_front(about: type, common: isCommon)
-                    }, back: {
-                        medicine_back(about: type, common: isCommon)
-                    })
-                   
+                    ForEach(filtered.filter({Set(symptoms_chosen).isSubset(of: Set($0.symptoms))}), id: \.self){ type in
                         
-                } // ForEach
+                        
+                        Flashcard(front: {
+                            medicine_front(about: type, common: isCommon)
+                        }, back: {
+                            medicine_back(about: type, common: isCommon)
+                        })
+                       
+                            
+                    } // ForEach
+                    
+                } // if
                 
+                else if (illnessChosen.isEmpty){
+                    
+                    ForEach(filtered, id: \.self){ type in
+                        
+                        Flashcard(front: {
+                            medicine_front(about: type, common: isCommon)
+                        }, back: {
+                            medicine_back(about: type, common: isCommon)
+                        })
+                       
+                            
+                    } // ForEach
+                    
+                } // else if
+                
+                else if (symptoms_chosen.isEmpty){
+                    
+                    ForEach(filtered.filter({illnessChosen == $0.illness}), id: \.self){ type in
+                        
+                        
+                        Flashcard(front: {
+                            medicine_front(about: type, common: isCommon)
+                        }, back: {
+                            medicine_back(about: type, common: isCommon)
+                        })
+                       
+                            
+                    } // ForEach
+                    
+                } // else if
+                
+                else{
+                    
+                    ForEach(filtered.filter({Set(symptoms_chosen).isSubset(of: Set($0.symptoms)) && illnessChosen == $0.illness}), id: \.self){ type in
+                        
+                        
+                        Flashcard(front: {
+                            medicine_front(about: type, common: isCommon)
+                        }, back: {
+                            medicine_back(about: type, common: isCommon)
+                        })
+                       
+                            
+                    } // ForEach
+                    
+                }
                 
             }).padding(25)
             .padding(.horizontal)
@@ -272,9 +347,9 @@ struct medicine_front: View {
     }
 }
 
-struct MedicineView_Previews: PreviewProvider {
-    static var previews: some View {
-        MedicineView(isPresented: .constant(true), illness: .constant("감기"))
-    }
-}
+//struct MedicineView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MedicineView(isPresented: .constant(true), illness: .constant("감기"))
+//    }
+//}
 

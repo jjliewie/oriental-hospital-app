@@ -126,8 +126,14 @@ struct Symptom: View {
                     .cornerRadius(22)
                         
                 Text(specific)
+                    .font(.headline)
                 
-                Text(String(number))
+                HStack(spacing:5){
+                    Text(String(number))
+                    Text("가지")
+                }
+                
+                
                         
             }
             .foregroundColor(.black)
@@ -145,8 +151,8 @@ struct Symptom: View {
     }
 }
 
-struct SymptomsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SymptomsView(isPresented: .constant(true))
-    }
-}
+//struct SymptomsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SymptomsView(isPresented: .constant(true))
+//    }
+//}

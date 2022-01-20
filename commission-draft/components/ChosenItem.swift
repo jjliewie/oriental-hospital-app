@@ -38,6 +38,7 @@ struct ChosenItem: View {
 struct ChosenText: View {
     
     @Binding var chosenString: String
+    @Binding var ChosenItems: Array<String>
 
     var body: some View {
         
@@ -46,6 +47,11 @@ struct ChosenText: View {
                 .lineLimit(1)
             
             Button(action: {
+                
+                if !ChosenItems.isEmpty{
+                    ChosenItems.removeAll()
+                }
+                
                 chosenString = ""
                 
             }) {
