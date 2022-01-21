@@ -131,9 +131,9 @@ struct SearchMap: View{
                         .fill(Color.offWhite)
                 )
             }
-            .fullScreenCover(isPresented: $showSearch) {
-                SearchView(isPresented: $showSearch)
-            }
+//            .fullScreenCover(isPresented: $showSearch) {
+//                SearchView(isPresented: $showSearch)
+//            } // not done yet
 
             Image(systemName: "map") // picture
                 .resizable()

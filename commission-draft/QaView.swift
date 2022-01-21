@@ -55,8 +55,8 @@ struct QaView: View {
                 }){
                     
                     HStack{
-                        Image(systemName: "arrow.left")
-                        Text("Back")
+                        Image(systemName: "arrow.down")
+                        Text("닫기")
                     }
                     .font(.headline)
                     .foregroundColor(.black)
@@ -102,8 +102,8 @@ struct QA: View{
     }
 }
 
-struct QaView_Previews: PreviewProvider {
-    static var previews: some View {
-        QaView(isPresented: .constant(true))
-    }
-}
+//struct QaView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        QaView(isPresented: .constant(true))
+//    }
+//}

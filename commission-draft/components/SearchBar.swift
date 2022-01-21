@@ -9,12 +9,13 @@ import SwiftUI
  
 struct SearchBar: View {
     @Binding var text: String
+    var initialText: String
  
     @State private var isEditing = false
  
     var body: some View {
         HStack {
-            TextField("Search Your Symptoms...", text: $text)
+            TextField(initialText, text: $text)
                 .padding(7)
                 .padding(.horizontal, 25)
                 .background(Color(.systemGray6))
@@ -60,6 +61,6 @@ struct SearchBar: View {
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(text: .constant("ㅇㅇㅇ"))
+        SearchBar(text: .constant(""), initialText: "증상을 입력해주세요...")
     }
 }

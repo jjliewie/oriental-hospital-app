@@ -74,7 +74,7 @@ struct MedicineView: View {
 
         ZStack{
             VStack{
-                
+//                증상을 입력해주세요
 //                Spacer()
 //
 //                Text(illness)
@@ -82,8 +82,15 @@ struct MedicineView: View {
                 
                 Spacer()
                 
-                SearchBar(text: $searchText)
-                    .padding()
+                if(illnessChosen.isEmpty && !isCommon){
+                    SearchBar(text: $searchText, initialText: "병고을 입력해주세요...")
+                        .padding()
+                }
+                else{
+                    SearchBar(text: $searchText, initialText: "증상을 입력해주세요...")
+                        .padding()
+                }
+                
 
                 if(!symptoms_chosen.isEmpty || !illnessChosen.isEmpty){
 
@@ -184,11 +191,14 @@ struct MedicineView: View {
                     isPresented = false
                 }){
                     HStack{
-                        Text("Close")
+                        Text("닫기")
                         Image(systemName: "arrow.down")
                     }
+                    .font(.title2)
+                    .foregroundColor(.black)
                     
                 }
+                .padding(10)
                 
 //                Spacer()
                 
@@ -300,7 +310,13 @@ struct medicine_back: View {
         VStack{
             
             ScrollView{
-                VStack{
+                VStack(alignment:.leading, spacing:5){
+                    
+                    Text("증상")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .padding(.vertical, 5)
+                    
                     ForEach(about.symptoms, id: \.self){ item in
                         Text(item)
                     } // ForEach
@@ -326,16 +342,26 @@ struct medicine_front: View {
         VStack{
             
             if common{
+                
                 Text(about.medicine)
                     .font(.title)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.4)
             }
             
             else{
                 
                 Text(about.illness)
+                    .font(.title)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.4)
                 Text(about.medicine)
+                    .font(.title2)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.4)
 
             }
+            
             
         }
         .padding()
@@ -347,9 +373,9 @@ struct medicine_front: View {
     }
 }
 
-//struct MedicineView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MedicineView(isPresented: .constant(true), illness: .constant("감기"))
-//    }
-//}
+struct MedicineView_Previews: PreviewProvider {
+    static var previews: some View {
+        MedicineView(isPresented: .constant(true), illness: .constant("감기"))
+    }
+}
 

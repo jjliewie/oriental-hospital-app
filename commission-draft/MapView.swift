@@ -8,6 +8,8 @@
 import SwiftUI
 import MapKit
 
+// not done yet
+
 struct MapView: View {
     @Binding var isPresented: Bool
     @State var coordinateRegion = MKCoordinateRegion(

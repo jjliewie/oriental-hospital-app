@@ -61,8 +61,9 @@ struct SymptomsView: View {
                     Spacer()
                     
                     HStack{
-                        Text("Symptoms")
+                        Text("병고")
                             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                            .fontWeight(.bold)
                         Spacer()
                     }.padding(.leading, 50)
                     
@@ -87,7 +88,7 @@ struct SymptomsView: View {
                         
                         HStack{
                             Image(systemName: "arrow.down")
-                            Text("Back")
+                            Text("닫기")
                         }
                         .font(.headline)
                         .foregroundColor(.black)
@@ -108,51 +109,72 @@ struct SymptomsView: View {
     }
 }
 
-//Set(symptoms_chosen).isSubset(of: Set($0.keywords))
-
 struct Symptom: View {
     @Binding var showSymptom: Bool
     @State var specific: String
     var number: Int
     
     var body: some View {
-
-        NavigationLink(destination: MedicineView(isPresented: $showSymptom, illness: $specific)){
-                    
-            VStack{
-                Image(systemName: "star")
+        
+        VStack(alignment:.leading){
+            
+            HStack{
+                Image(systemName: "star") // change to different image
                     .resizable()
-                    .scaledToFit()
-                    .cornerRadius(22)
-                        
+                    .frame(width: 40, height: 40, alignment: .topLeading)
+//                        .cornerRadius(22)
+                Spacer()
+            }
+            .padding(.leading, 5)
+            
+            VStack(alignment:.leading, spacing:5){
                 Text(specific)
-                    .font(.headline)
+                    .font(.title2)
+                    .fontWeight(.bold)
                 
                 HStack(spacing:5){
                     Text(String(number))
                     Text("가지")
                 }
+                .font(.headline)
                 
-                
-                        
-            }
-            .foregroundColor(.black)
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.white)
-            )
+                NavigationLink(destination: MedicineView(isPresented: $showSymptom, illness: $specific)){
+                            
+                    Text("보기")
+                        .font(.subheadline)
+                        .foregroundColor(.black)
+                        .padding(10)
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.offWhite)
+                        )
 
+                }
+                .navigationBarTitle("")
+                .navigationBarHidden(true)
+                .navigationBarBackButtonHidden(true)
+                .navigationViewStyle(StackNavigationViewStyle())
+                .padding(.top, 10)
+                
+            }
+            .padding([.horizontal, .top], 10)
+            
+                    
         }
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
-        .navigationViewStyle(StackNavigationViewStyle())
+        .foregroundColor(.black)
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color.white)
+        )
+
     }
 }
 
-//struct SymptomsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SymptomsView(isPresented: .constant(true))
-//    }
-//}
+struct SymptomsView_Previews: PreviewProvider {
+    static var previews: some View {
+        SymptomsView(isPresented: .constant(true))
+    }
+}

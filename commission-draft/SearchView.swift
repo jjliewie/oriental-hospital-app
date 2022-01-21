@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// not done yet
+
 extension LinearGradient {
     init(_ colors: Color...) {
         self.init(gradient: Gradient(colors: colors), startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -76,7 +78,7 @@ struct SearchView: View {
                         Spacer()
                     }.padding([.leading, .top])
                     
-                    SearchBar(text: $searchText)
+                    SearchBar(text: $searchText, initialText: "증상을 입력해주세요...")
                         .padding()
                     
                     
