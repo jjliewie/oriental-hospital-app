@@ -10,7 +10,7 @@ import SwiftUI
 struct hosInfo: Codable, Hashable {
     var name: String
     var location: String
-    var keywords: Array<String>
+    var medicines: Array<String>
 }
 
 struct LocationView: View {
@@ -29,6 +29,10 @@ struct LocationView: View {
                 
                 SearchBar(text: $searchText, initialText: "한의학을 입력해주세요...")
                     .padding()
+                
+                if !searchText.isEmpty{
+                    Text("hello world")
+                }
                 
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
