@@ -30,15 +30,6 @@ struct Flashcard<Front, Back>: View where Front: View, Back: View {
             }
         }
         .rotation3DEffect(.degrees(contentRotation), axis: (x: 0, y: 1, z: 0))
-//        .padding()
-//        .frame(height: 200)
-//        .frame(maxWidth: .infinity)
-//        .background(Color.white)
-//        .overlay(
-//            Rectangle()
-//                .stroke(Color.black, lineWidth: 2)
-//        )
-//        .padding()
         .onTapGesture {
             flipFlashcard()
         }

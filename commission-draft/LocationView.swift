@@ -7,13 +7,21 @@
 
 import SwiftUI
 
-struct hosInfo: Codable, Hashable {
+struct info: Codable, Hashable {
     var name: String
     var location: String
     var medicines: Array<String>
 }
 
 struct LocationView: View {
+    
+    func getJson() -> [info]{
+        let url = Bundle.main.url(forResource: "hospital", withExtension: "json")!
+        let data = try! Data(contentsOf: url)
+        let decoder = JSONDecoder()
+        let infos = try? decoder.decode([info].self, from: data)
+        return infos!
+    }
     
     @Environment(\.presentationMode) var presentationMode
     
