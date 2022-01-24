@@ -29,6 +29,8 @@ struct LocationView: View {
     
     @State private var medicines_chosen: Array<String> = [];
     
+    @State private var showMap = false;
+    
     func make_list(items: [info]) -> Array<String>{
         var list: Array<String> = []
         
@@ -43,72 +45,83 @@ struct LocationView: View {
 
     var body: some View {
         
-        ZStack{
+        NavigationView{
             
-            let medicine_list = make_list(items: getJson())
-            
-            VStack{
+            ZStack{
                 
-                Text("hello")
+                let medicine_list = make_list(items: getJson())
                 
-                SearchBar(text: $searchText, initialText: "한의학을 입력해주세요...")
-                    .padding()
-                
-                if(!medicines_chosen.isEmpty){
+                VStack{
+                    
+                    Spacer()
+                    
+                    Text("한의원 찾기")
+                        .font(.title)
+                    
+                    SearchBar(text: $searchText, initialText: "한의학을 입력해주세요...")
+                        .padding()
+                    
+                    if(!medicines_chosen.isEmpty){
 
-                    ScrollView(.horizontal){
+                        ScrollView(.horizontal){
 
-                        HStack{
+                            HStack{
 
-                            ForEach(medicines_chosen, id: \.self){ medicine in
-                                ChosenItem(text: medicine, items: $medicines_chosen)
+                                ForEach(medicines_chosen, id: \.self){ medicine in
+                                    ChosenItem(text: medicine, items: $medicines_chosen)
+                                }
+
                             }
+                            .padding(.bottom, 10)
 
-                        }
-                        .padding(.bottom, 10)
+                        }.padding(.horizontal, 40)
 
-                    }.padding(.horizontal, 40)
-
-                }
-                
-                if !searchText.isEmpty{
-                    
-                    ForEach(medicine_list.filter({"\($0)".contains(searchText) && !medicines_chosen.contains("\($0)")}), id: \.self){ item in
-                        
-                        Button(action:{
-                            medicines_chosen.append(item)
-                        }){
-                            Text(item)
-                        }
-                        
-                    }// foreach
-                }
-                
-                location_scroll(items: getJson(), chosen: medicines_chosen)
-                
-                
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }){
-                    
-                    HStack{
-                        Image(systemName: "arrow.down")
-                        Text("Back")
                     }
-                    .font(.headline)
-                    .foregroundColor(.black)
-                    .padding()
-                    .background(
-                        RoundedRectangle(cornerRadius: 20)
-                            .fill(Color.white)
-                    )
-                }
+                    
+                    if !searchText.isEmpty{
+                        
+                        ForEach(medicine_list.filter({"\($0)".contains(searchText) && !medicines_chosen.contains("\($0)")}), id: \.self){ item in
+                            
+                            Button(action:{
+                                medicines_chosen.append(item)
+                            }){
+                                Text(item)
+                            }
+                            
+                        }// foreach
+                    }
+                    
+                    Spacer()
+                    
+                    location_scroll(items: getJson(), chosen: medicines_chosen, showMap: $showMap)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }){
+                        
+                        HStack{
+                            Image(systemName: "arrow.down")
+                            Text("Back")
+                        }
+                        .font(.headline)
+                        .foregroundColor(.black)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color.white)
+                        )
+                    }
+                    
+                    Spacer()
+                    
+                }// VStack
                 
-            }// VStack
+                
+            } // ZStack
             
-            
-        } // ZStack
-        
+        } // NavView
     } // body
 } // view
 
@@ -116,6 +129,7 @@ struct location_scroll: View{
     
     var items: [info]
     var chosen: Array<String>
+    @Binding var showMap: Bool
     
     var body: some View{
         ScrollView{
@@ -126,7 +140,16 @@ struct location_scroll: View{
                 
                 ForEach(items.filter({Set(chosen).isSubset(of: Set($0.medicines))}), id: \.self){ type in
                     
-                    Text(type.name)
+                    NavigationLink(destination: MapView(isPresented: $showMap)){
+                        
+                        Text(type.name)
+                        
+                    }
+                    .navigationBarTitle("")
+                    .navigationBarHidden(true)
+                    .navigationBarBackButtonHidden(true)
+                    .navigationViewStyle(StackNavigationViewStyle())
+                    
                 }
             }) // lazyvgrid
             .padding(25)
