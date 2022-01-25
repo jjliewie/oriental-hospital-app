@@ -11,10 +11,13 @@ struct info: Codable, Hashable {
     var name: String
     var location: String
     var medicines: Array<String>
+    var coordinates: Array<Double>
 }
 
 struct LocationView: View {
     
+    @Binding var isPresented: Bool
+
     func getJson() -> [info]{
         let url = Bundle.main.url(forResource: "hospital", withExtension: "json")!
         let data = try! Data(contentsOf: url)
@@ -53,13 +56,13 @@ struct LocationView: View {
                 
                 VStack{
                     
-                    Spacer()
-                    
                     Text("한의원 찾기")
                         .font(.title)
+                        .padding()
+                        .padding(.top)
                     
                     SearchBar(text: $searchText, initialText: "한의학을 입력해주세요...")
-                        .padding()
+                        .padding(.horizontal)
                     
                     if(!medicines_chosen.isEmpty){
 
@@ -90,12 +93,10 @@ struct LocationView: View {
                             
                         }// foreach
                     }
-                    
-                    Spacer()
+
                     
                     location_scroll(items: getJson(), chosen: medicines_chosen, showMap: $showMap)
-                    
-                    Spacer()
+
                     
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
@@ -113,9 +114,7 @@ struct LocationView: View {
                                 .fill(Color.white)
                         )
                     }
-                    
-                    Spacer()
-                    
+                                        
                 }// VStack
                 
                 
@@ -140,7 +139,7 @@ struct location_scroll: View{
                 
                 ForEach(items.filter({Set(chosen).isSubset(of: Set($0.medicines))}), id: \.self){ type in
                     
-                    NavigationLink(destination: MapView(isPresented: $showMap)){
+                    NavigationLink(destination: MapView(isPresented: $showMap, coordinates: type.coordinates, name: type.name)){
                         
                         Text(type.name)
                         
@@ -160,6 +159,6 @@ struct location_scroll: View{
 
 struct LocationView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationView()
+        LocationView(isPresented: .constant(true))
     }
 }

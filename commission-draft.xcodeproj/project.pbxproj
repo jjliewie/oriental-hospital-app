@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD0BAAC4279FD15300AABF6D /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0BAAC3279FD15300AABF6D /* MapViewModel.swift */; };
 		DD237A1427803FDE0070F407 /* commission_draftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD237A1327803FDE0070F407 /* commission_draftApp.swift */; };
 		DD237A1627803FDE0070F407 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD237A1527803FDE0070F407 /* ContentView.swift */; };
 		DD237A1827803FDF0070F407 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD237A1727803FDF0070F407 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD0BAAC3279FD15300AABF6D /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		DD237A1027803FDE0070F407 /* commission-draft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "commission-draft.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD237A1327803FDE0070F407 /* commission_draftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commission_draftApp.swift; sourceTree = "<group>"; };
 		DD237A1527803FDE0070F407 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				DD237A44278075C60070F407 /* SearchBar.swift */,
 				DDA27FD9278E94A8003CD075 /* Flip.swift */,
 				DD336A2E279664DB000E175E /* ChosenItem.swift */,
+				DD0BAAC3279FD15300AABF6D /* MapViewModel.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				DDB18916279A3B370046125F /* LocationView.swift in Sources */,
 				DD237A45278075C60070F407 /* SearchBar.swift in Sources */,
 				DD336A2F279664DB000E175E /* ChosenItem.swift in Sources */,
+				DD0BAAC4279FD15300AABF6D /* MapViewModel.swift in Sources */,
 				DDA27FDA278E94A8003CD075 /* Flip.swift in Sources */,
 				DD9D0B2827826A8300B90AF3 /* HospitalView.swift in Sources */,
 				DD237A3F278040C60070F407 /* MapView.swift in Sources */,

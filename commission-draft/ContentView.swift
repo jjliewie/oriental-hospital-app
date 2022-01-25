@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var showQa = false
-    @State private var showSearch = false
+    @State private var showLocation = false
     @State private var showSymptom = false
         
     var body: some View {
@@ -45,7 +45,7 @@ struct ContentView: View {
                         .padding(.horizontal, 50)
                     
                     HStack(spacing:20){
-                        SearchMap(showSearch: $showSearch)
+                        SearchMap(showLocation: $showLocation)
                         SearchSymptom(showSymptom: $showSymptom)
                     }
                     .padding(.horizontal, 50)
@@ -112,13 +112,13 @@ struct SearchSymptom: View{
 
 struct SearchMap: View{
     
-    @Binding var showSearch: Bool
+    @Binding var showLocation: Bool
     
     var body: some View {
         VStack{
             
             Button(action: {
-                showSearch = true
+                showLocation = true
             }) {
                 
                 Text("한의원 찾기")
@@ -131,9 +131,9 @@ struct SearchMap: View{
                         .fill(Color.offWhite)
                 )
             }
-//            .fullScreenCover(isPresented: $showSearch) {
-//                SearchView(isPresented: $showSearch)
-//            } // not done yet
+            .fullScreenCover(isPresented: $showLocation) {
+                LocationView(isPresented: $showLocation)
+            } // not done yet
 
             Image(systemName: "map") // picture
                 .resizable()
